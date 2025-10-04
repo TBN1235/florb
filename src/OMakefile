@@ -28,6 +28,7 @@ CXXFLAGS = -std=c++11 -Wall -O2 -funroll-loops \
 	$(shell pkg-config --cflags x11) \
 	$(shell pkg-config --cflags xpm) \
 	$(shell pkg-config --cflags yaml-cpp)
+CXXFLAGS += -fno-pie
 
 # Do a debug build if requested
 if $(defined DEBUG)
@@ -35,7 +36,7 @@ if $(defined DEBUG)
 	export
 
 #Linker flags
-LDFLAGS = \
+LDFLAGS = -no-pie \
 	$(shell fltk-config --use-images --ldflags) \
 	$(shell curl-config --libs) \
 	$(shell pkg-config --libs tinyxml2) \
